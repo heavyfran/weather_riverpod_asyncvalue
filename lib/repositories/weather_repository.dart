@@ -23,7 +23,7 @@ class WeatherRepository {
         name: directGeocoding.name,
         sys: tempWeather.sys.copyWith(country: directGeocoding.country),
       );
-      print('currentWeather: $currentWeather');
+      // print('currentWeather: $currentWeather');
 
       return currentWeather;
     } on WeatherException catch (e) {
