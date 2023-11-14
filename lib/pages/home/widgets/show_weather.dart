@@ -26,11 +26,62 @@ class ShowWeather extends ConsumerWidget {
 
         final appWeather = AppWeather.fromCurrentWeather(weather);
 
-        return Center(
-          child: Text(
-            appWeather.name,
-            style: const TextStyle(fontSize: 18),
-          ),
+        return ListView(
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height / 6,
+            ),
+            Text(
+              appWeather.name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 40.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  TimeOfDay.fromDateTime(DateTime.now()).format(context),
+                  style: const TextStyle(fontSize: 18.0),
+                ),
+                const SizedBox(width: 10.0),
+                Text(
+                  '(${appWeather.country})',
+                  style: const TextStyle(fontSize: 18.0),
+                ),
+              ],
+            ),
+            const SizedBox(height: 60.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '${appWeather.temp}',
+                  style: const TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(width: 20.0),
+                Column(
+                  children: [
+                    Text(
+                      '${appWeather.tempMax}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      '${appWeather.tempMin}',
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         );
       },
       error: (error, stackTrace) {
